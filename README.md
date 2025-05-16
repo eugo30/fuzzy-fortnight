@@ -1,2 +1,2 @@
 # fuzzy-fortnight
-Xrp bot lab 
+mind your own business
