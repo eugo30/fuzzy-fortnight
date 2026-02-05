@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Moon.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>Oracle Trader</title>
+</head>
+<body>
+
+  
+
+    <div class="dashboard">
+      
+      <div class="moon-display">
+        <div id="moon-icon">🌑</div>
+        <h2 id="phase-name">Calculating...</h2>
+        
+        <div class="illumination-container">
+            <span>Illumination: <span id="illumination-val" class="highlight">0</span>%</span>
+            <div class="illumination-bar">
+                <div id="illumination-progress"></div>
+            </div>
+        </div>
+    
+        <div class="sentiment-log" id="daily-log">
+            <div class="log-entry">
+                <strong>Psychology Note:</strong>
+                <p id="psych-detail">Loading market intuition...</p>
+            </div>
+            <div class="log-entry">
+                <strong>Crowd Behavior:</strong>
+                <p id="crowd-detail">Analyzing retail sentiment...</p>
+            </div>
+        </div>
+        
+        <div id="market-sentiment-badge" class="bias-badge">Neutral</div>
+    </div>
+
+       
+       
+          <div class="trading-data">
+            <h3>Live Perpetuals (OKX)</h3>
+            <div class="ticker-card">
+                <div>BTC-USDT-SWAP</div>
+                <div id="BTC-USDT-SWAP-price" class="price">0.00</div>
+                <div id="BTC-bias" class="bias-badge">--</div>
+            </div>
+            <div class="ticker-card">
+                <div>XRP-USDT-SWAP</div>
+                <div id="XRP-USDT-SWAP-price" class="price">0.00</div>
+                <div id="XRP-bias" class="bias-badge">--</div>
+            </div>
+
+
+            <header class="dev-header">
+              Oracle Terminal <span class="accent">v1.0</span> — Developed by The al-The-Mist
+          </header>
+          
+          <div class="oracle-container">
+              </div>
+          
+          <footer class="dev-footer">
+              &copy; 2026 al The Mist | all works together for Good </footer>
+              <div class="status-container">
+                <span id="status-dot" class="dot"></span>
+                <span id="status-text">Connecting...</span>
+            </div>
+
+        </div>
+    </div>
+    <script src="moon.js"></script>
+</body>
+</html>
