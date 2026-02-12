@@ -32,6 +32,7 @@ function getMoonPhase() {
 }
 
 
+
 // New Sentiment Database
 const LUNAR_INTUITION = {
   "New Moon": {
@@ -85,6 +86,29 @@ function updateLunarDashboard() {
   badge.className = `bias-badge ${key.replace(' ', '-').toLowerCase()}`;
 }
 
+
+function getLunarExtras(phase, now) {
+    // 1. Simple Zodiac Approximation (based on 27.3 day sidereal month)
+    const zodiacs = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
+    const siderealDays = 27.321;
+    const refDate = new Date(2000, 0, 6); 
+    const daysSince = (now - refDate) / 86400000;
+    const zodiacIndex = Math.floor((daysSince / siderealDays % 1) * 12);
+    
+    // 2. Countdown to Next Major Phase (approx 7.4 days per quarter)
+    const daysRemaining = (0.25 - (phase % 0.25)) * 29.53;
+    const hoursRemaining = (daysRemaining % 1) * 24;
+
+    // 3. Cycle Dates (Last New Moon to Next New Moon)
+    const lastNM = new Date(now.getTime() - (phase * 29.53 * 86400000));
+    const nextNM = new Date(now.getTime() + ((1 - phase) * 29.53 * 86400000));
+
+    // Update UI
+    document.getElementById('m-zodiac').innerText = zodiacs[zodiacIndex];
+    document.getElementById('m-countdown').innerText = `${Math.floor(daysRemaining)}d ${Math.floor(hoursRemaining)}h`;
+    document.getElementById('m-cycle-range').innerText = `${lastNM.toLocaleDateString('en-GB')} - ${nextNM.toLocaleDateString('en-GB')}`;
+}
+
 // Run update every time the page loads
 updateLunarDashboard();
 
@@ -112,7 +136,8 @@ socket.onopen = () => {
         "op": "subscribe",
         "args": [
             { "channel": "tickers", "instId": "BTC-USDT-SWAP" },
-            { "channel": "tickers", "instId": "XRP-USDT-SWAP" }
+            { "channel": "tickers", "instId": "XRP-USDT-SWAP" },
+            { "channel": "tickers", "instId": "CELO-USDT-SWAP" }
         ]
     }));
 };
