@@ -31,6 +31,7 @@ button:hover { background: #444; }
 
 
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
 
@@ -158,13 +159,15 @@ function updateSignal(z, price) {
     }
 }
 
-function addLog(msg, type) {
-    const logEntry = { time: new Date().toLocaleTimeString(), msg, type };
+async function addLog(msg, type) {
+    const time = new Date().toLocaleTimeString();
+    const logEntry = { time, msg, type };
+
+    // 1. SAVE LOCALLY (Survives page reload in the same browser)
     tradeLogs.unshift(logEntry);
     if (tradeLogs.length > 30) tradeLogs.pop();
     localStorage.setItem('celo_logs', JSON.stringify(tradeLogs));
     renderLogs();
-}
 
 function renderLogs() {
     document.getElementById("log-window").innerHTML = tradeLogs.map(l => 
@@ -195,6 +198,7 @@ renderLogs();
 </body>
 
 </html>
+
 
 
 
