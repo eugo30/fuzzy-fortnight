@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal 1 althemi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onclick="enableAudio()">
+
+
+    <div class="sidebar">
+        <h2>TERMINAL 1 althemi</h2>
+        <button onclick="toggleBot()">Toggle Scalper</button>
+        <button onclick="downloadCSV()">Export Logs (CSV)</button>
+        <button onclick="clearLogs()" style="color: #e74c3c;">Reset Data</button>
+    </div>
+
+    <div class="main-content">
+        <div id="bot-container" class="dashboard-card">
+            <h2 id="status-title">CELO LIVE</h2>
+            <div class="price-display" id="price-val">$0.0000</div>
+
+
+            <div class="pnl-box">
+                <div style="font-size: 0.8em; margin-bottom: 5px;">PNL CALCULATOR</div>
+                <input type="number" id="buy-price" value="0.50" step="0.01" placeholder="Entry Price">
+                <input type="number" id="amt" value="100" step="10" placeholder="Amount ($)">
+                <div id="pnl-display" style="font-size: 1.4em; margin-top: 10px;">$0.00</div>
+            
+            </div>
+
+
+
+            <div id="signal-display" class="signal-box wait">SYNCING MARKET...</div>
+            
+            <div class="stats-grid">
+                <div>Z-Score: <span id="z-val">--</span></div>
+                <div>Mean: <span id="mean-val">--</span></div>
+            </div>
+
+            <div class="log-header">Trade History</div>
+            <div id="log-window" class="log-window"></div>
+        </div>
+        <div class="audio-status" id="audio-note">Click anywhere to enable Sound Alerts 🔔</div>
+    </div>
+
+    <script src="LOGIC.js"></script>
+    <script>
+        function toggleBot() {
+            const container = document.getElementById('bot-container');
+            container.style.display = container.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
